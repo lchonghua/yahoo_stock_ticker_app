@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NetAssetValueCalculator.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assign2</a> &gt; <a href="index.source.html" class="el_package">stock</a> &gt; <span class="el_source">NetAssetValueCalculator.java</span></div><h1>NetAssetValueCalculator.java</h1><pre class="source lang-java linenums">package stock;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+public class NetAssetValueCalculator {
+    private StockPriceFetcher theFetcher;
+<span class="fc" id="L11">    private List&lt;String&gt; invalidTickerList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L12">    private List&lt;String&gt; networkFailureList = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L14">    public NetAssetValueCalculator(StockPriceFetcher fetcher){</span>
+<span class="fc" id="L15">        theFetcher = fetcher;</span>
+<span class="fc" id="L16">    }</span>
+
+    public int calculateValueOfAStockInCents(int numOfShares, int stockPrice) {
+<span class="fc" id="L19">        return numOfShares * stockPrice;</span>
+    }
+
+<span class="fc" id="L22">    public int getStockPrice(String ticker)  { return theFetcher.getPrice(ticker); }</span>
+
+    public Map&lt;String, Integer&gt; setCurrentPrices(Map&lt;String, Integer&gt; queries){
+<span class="fc" id="L25">        Map&lt;String, Integer&gt; currentPriceList = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if(queries.size()!=0) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            for (Map.Entry&lt;String, Integer&gt; entry : queries.entrySet()) {</span>
+<span class="fc" id="L28">                String key = entry.getKey();</span>
+<span class="fc" id="L29">                int currentPrice = 0;</span>
+                try {
+<span class="fc" id="L31">                    currentPrice = getStockPrice(key);</span>
+<span class="fc" id="L32">                } catch (Exception e) {</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">                    if(e.getMessage().equals(&quot;Invalid ticker&quot;))</span>
+<span class="fc" id="L34">                        invalidTickerList.add(key);</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">                    else if(e.getMessage().equals(&quot;Network failure&quot;))</span>
+<span class="fc" id="L36">                        networkFailureList.add(key);</span>
+<span class="fc" id="L37">                }</span>
+<span class="fc" id="L38">                currentPriceList.put(key, currentPrice);</span>
+<span class="fc" id="L39">            }</span>
+        }
+<span class="fc" id="L41">        return currentPriceList;</span>
+    }
+
+    public Map&lt;String, Integer&gt; setTotalValues (Map&lt;String, Integer&gt; queries, Map&lt;String, Integer&gt; priceList){
+<span class="fc" id="L45">        Map&lt;String, Integer&gt; totalValueList = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if(queries.size()!=0) {</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">            for (Map.Entry&lt;String, Integer&gt; entry : queries.entrySet()) {</span>
+<span class="fc" id="L48">                String key = entry.getKey();</span>
+<span class="fc" id="L49">                int share = entry.getValue();</span>
+<span class="fc" id="L50">                int price = priceList.get(key);</span>
+
+<span class="fc" id="L52">                totalValueList.put(key, calculateValueOfAStockInCents(share, price));</span>
+<span class="fc" id="L53">            }</span>
+        }
+<span class="fc" id="L55">        return totalValueList;</span>
+    }
+
+    public int computeNetAssetValues(Map&lt;String, Integer&gt; totalValList){
+<span class="fc" id="L59">        int totalNetAssetVal = 0;</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if(totalValList.size()!=0) {</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            for (Map.Entry&lt;String, Integer&gt; entry : totalValList.entrySet())</span>
+<span class="fc" id="L62">                totalNetAssetVal += entry.getValue();</span>
+        }
+
+<span class="fc" id="L65">        return totalNetAssetVal;</span>
+    }
+
+<span class="fc" id="L68">    public List&lt;String&gt; getInvalidTickerList(){return invalidTickerList;}</span>
+<span class="fc" id="L69">    public List&lt;String&gt; getNetworkFailureList(){return networkFailureList;}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

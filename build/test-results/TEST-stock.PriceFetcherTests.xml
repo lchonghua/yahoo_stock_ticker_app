@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="stock.PriceFetcherTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-10-08T04:12:30" hostname="LAPTOP-48JFAUP7" time="0.234">
+  <properties/>
+  <testcase name="getStockPriceForInvalidTicker" classname="stock.PriceFetcherTests" time="0.125"/>
+  <testcase name="getStockPriceForFB" classname="stock.PriceFetcherTests" time="0.109"/>
+  <system-out><![CDATA[exception is:java.io.FileNotFoundException
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

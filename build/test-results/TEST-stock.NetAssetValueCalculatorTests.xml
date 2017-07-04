@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="stock.NetAssetValueCalculatorTests" tests="16" skipped="0" failures="0" errors="0" timestamp="2016-10-08T04:12:30" hostname="LAPTOP-48JFAUP7" time="0.33">
+  <properties/>
+  <testcase name="getStockPricesForTwoTickersWithOneSuccessesAndOneFails" classname="stock.NetAssetValueCalculatorTests" time="0.283"/>
+  <testcase name="canary" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="setStocksPriceWhenThereIsOnlyOneTickerAndItIsInvalid" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="getTotalValueOfOneStocksWhenThereIsOneTicker" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="setStckPriceForWhenOnlyOneTicker" classname="stock.NetAssetValueCalculatorTests" time="0.015"/>
+  <testcase name="calculateValueOfAStock" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="getStockPriceOfGOOG" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="getStockPriceReceivesExceptionWhenNetworkFails" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="getTotalValOfAllStocksWhenThereAreTwoTickers" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="calculateValueOfAStockWhenShareIsZero" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="calculateValueOfAStockWhenShareIsOne" classname="stock.NetAssetValueCalculatorTests" time="0.016"/>
+  <testcase name="setStockPricesWithTwoValidTickers" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="getTotalValueOfAllStocksWhenThereIsNoTicker" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="setStockPricesWithOneValidTickerOneInvalidTicker" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="getStockPriceReceivesExceptionWhenTickerIsInvalid" classname="stock.NetAssetValueCalculatorTests" time="0.0"/>
+  <testcase name="setStockPricesWhenThereIsOnlyOneTickerAndNetworkFails" classname="stock.NetAssetValueCalculatorTests" time="0.016"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
